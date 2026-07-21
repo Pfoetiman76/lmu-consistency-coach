@@ -1467,7 +1467,7 @@ class GeminiWindow(QWidget):
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("LMU Consistency Coach – {APP_VERSION}")
+        self.setWindowTitle(f"LMU Consistency Coach – {APP_VERSION}")
         self.resize(1520, 920)
         logo_path = ASSET_DIR / "lmu_app_icon.png"
         if logo_path.exists():
@@ -1538,13 +1538,6 @@ class Main(QMainWindow):
         head_text.addStretch(1)
         title = QLabel("LMU Consistency Coach")
         title.setStyleSheet("font-size:27px;font-weight:800;letter-spacing:0.5px;")
-        subtitle = QLabel(f"{APP_VERSION} \u2013 Rundenzeiten-Referenz (Skill-Level)")
-        subtitle.setStyleSheet("font-size:13px;color:#8a97a8;letter-spacing:0.3px;")
-        subtitle.setWordWrap(True)
-        head_text.addWidget(title); head_text.addWidget(subtitle)
-        head_text.addStretch(1)
-        header.addLayout(head_text, stretch=1)
-        layout.addLayout(header)
         subtitle = QLabel(f"{APP_VERSION} \u2013 Rundenzeiten-Referenz (Skill-Level)")
         subtitle.setStyleSheet("font-size:13px;color:#8a97a8;letter-spacing:0.3px;")
         subtitle.setWordWrap(True)
