@@ -30,7 +30,7 @@ from tts import SpeechEngine  # 0.4.7.2: Offline-Sprachausgabe
 import updater  # 0.4.7.5: Update-Pruefung ueber GitHub Releases
 from PySide6.QtGui import QPainter, QPen, QColor, QBrush, QIcon, QPixmap, QDesktopServices, QShortcut, QKeySequence, QFont, QLinearGradient, QPainterPath
 
-APP_VERSION = "0.4.8.3 Beta"
+APP_VERSION = "0.4.8.3.1 Beta"
 DARK_QSS = """
             QWidget { font-family: "Segoe UI", "Inter", sans-serif; font-size: 13px; color: #e8edf4; }
             QLabel { color: #e8edf4; background: transparent; }
@@ -1467,7 +1467,7 @@ class GeminiWindow(QWidget):
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle(f"LMU Consistency Coach – {APP_VERSION}")
+        self.setWindowTitle("LMU Consistency Coach – {APP_VERSION}")
         self.resize(1520, 920)
         logo_path = ASSET_DIR / "lmu_app_icon.png"
         if logo_path.exists():
@@ -1532,19 +1532,24 @@ class Main(QMainWindow):
         self.apply_theme(self._theme)
         header = QHBoxLayout()
         logo = QLabel()
-        logo_path = ASSET_DIR / "lmu_header_logo.png"
-        if logo_path.exists():
-            logo.setPixmap(QPixmap(str(logo_path)).scaled(260, 82, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-            logo.setMinimumWidth(280)
-            logo.setStyleSheet("background:#0a0d13; border-radius:10px; padding:6px;")  # 0.4.8.2: Logo-Chip
         header.addWidget(logo)
         head_text = QVBoxLayout()
+        head_text.setSpacing(2)
+        head_text.addStretch(1)
         title = QLabel("LMU Consistency Coach")
         title.setStyleSheet("font-size:27px;font-weight:800;letter-spacing:0.5px;")
-        subtitle = QLabel("0.4.8.3 Beta – Rundenzeiten-Referenz (Skill-Level)")
+        subtitle = QLabel(f"{APP_VERSION} \u2013 Rundenzeiten-Referenz (Skill-Level)")
         subtitle.setStyleSheet("font-size:13px;color:#8a97a8;letter-spacing:0.3px;")
         subtitle.setWordWrap(True)
         head_text.addWidget(title); head_text.addWidget(subtitle)
+        head_text.addStretch(1)
+        header.addLayout(head_text, stretch=1)
+        layout.addLayout(header)
+        subtitle = QLabel(f"{APP_VERSION} \u2013 Rundenzeiten-Referenz (Skill-Level)")
+        subtitle.setStyleSheet("font-size:13px;color:#8a97a8;letter-spacing:0.3px;")
+        subtitle.setWordWrap(True)
+        head_text.addWidget(title); head_text.addWidget(subtitle)
+        head_text.addStretch(1)
         header.addLayout(head_text, stretch=1)
         layout.addLayout(header)
 
